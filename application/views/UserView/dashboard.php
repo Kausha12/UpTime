@@ -167,9 +167,9 @@
                         </div>
                     </li><input type="hidden" value="20" id="mainSideMenuMonitorsLimit">
                     <li class="accordion-group hide" id="loadingMoreMonitors" style="background: #373b3e;">
-                        <div class="accordion-heading">
+                        <!-- <div class="accordion-heading">
                             <a class="monitorTitle" href="#" style="color:#e6e8eb;">Loading more....</a>
-                        </div>
+                        </div> -->
                     </li>
                 </ul>
                 <input id="monitorsLastRowReached" type="hidden" value="0" />
