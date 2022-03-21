@@ -124,6 +124,7 @@ if ($this->session->flashdata('message')) {
               <div class="form-group uk-margin-small-bottom">
                 <label for="userEmail" class="uk-text-muted uk-text-small">Password </label>
                 <input type="password" id="password" name="password" class="uk-input uk-form-large"  autofocus>
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
                 <div class="form-group uk-margin-small-bottom">
                 <label for="userPassword" class="uk-text-muted uk-text-small">Confirm Password</label>
@@ -144,6 +145,22 @@ if ($this->session->flashdata('message')) {
                 UptimeRobot ® 2022. All Rights Reserved
             </footer>
     </section>
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+        togglePassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+        // prevent form submit
+        const form = document.querySelector("form");
+        form.addEventListener('Register', function (e) {
+            e.preventDefault();
+        });
+        </script> 
 <script src="<?php echo base_url();?>assets/js/lib/jquery.js"></script>
 <script src="<?php echo base_url();?>assets/js/lib/bootstrap/bootstrap3_3_5.min.js"></script>
 

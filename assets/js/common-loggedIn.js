@@ -343,7 +343,7 @@ $(document).ready(function() {
         $('.dashBigTitle').html('Account Dashboard');
         $('.dashBigTitle').attr("data-monitorid", "");
         $('.dashSmallTitle').html('details about the account');
-        $('#page-content').load('inc/pages/mainDashboard.php', function() {
+        $('#page-content').load('/inc/pages/mainDashboard.php', function() {
             nMainDashboard.close();
             jQuery.getFeed({
                 url: 'https://blog.uptimerobot.com/feed/',
@@ -454,7 +454,7 @@ $(document).ready(function() {
         $('.spanDownListBlock .section-content').html('');
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=getDownMonitorsList",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 theResponse = $.parseJSON(theResponse);
                 if (theResponse.status) {
@@ -719,7 +719,7 @@ $(document).ready(function() {
             }
             $.ajax({
                 type: "GET",
-                url: "inc/dml/monitorDML.php?action=getMonitorDetailsArray&monitorID=" + monitorID,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
                 success: function(theResponse) {
                     var json = eval(theResponse);
                     var monitorFriendlyName = json[0]['monitorFriendlyName'];
@@ -919,7 +919,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     data: postData,
-                    url: "inc/dml/userDML.php?action=deleteAccountSendVerification",
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         if (theResponse == 'true') {
                             $("#deleteAccountSendVerificationSuccessNotification").slideDown();
@@ -1079,7 +1079,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: 'POST',
                     data: postData,
-                    url: 'inc/dml/userDML.php?action=generateRSSFeedKey',
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         $('#enableRSSLinkWrapper').slideUp('slow', function() {
                             $('#userRSSLink').attr('href', theResponse);
@@ -1097,7 +1097,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: 'POST',
                     data: postData,
-                    url: 'inc/dml/userDML.php?action=deleteRSSFeedKey',
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         if (theResponse == 'true') {
                             $('#disableRSSLinkWrapper').slideUp('slow', function() {
@@ -1136,7 +1136,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: 'POST',
                     data: postData,
-                    url: 'inc/dml/userDML.php?action=deleteMainAPIKey',
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         if (theResponse == 'true') {
                             $('#deleteMainAPIKeyWrapper').slideUp('slow');
@@ -1155,7 +1155,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: 'POST',
                     data: postData,
-                    url: 'inc/dml/userDML.php?action=generateMainAPIKey',
+                    url:" <?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         $('#deleteMainAPIKeyWrapper').slideDown('slow');
                         $('#createMainAPIKeyWrapper').slideUp('slow');
@@ -1180,7 +1180,7 @@ $(document).ready(function() {
                 minimumInputLength: 1,
                 placeholder: 'Search',
                 ajax: {
-                    url: 'inc/dml/monitorDML.php?action=getMonitorDetailsArrayForMonitorAPI',
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     dataType: 'json',
                     quietMillis: 100,
                     data: function(term) {
@@ -1206,7 +1206,7 @@ $(document).ready(function() {
                 $('#deleteMonitorAPIKeyWrapper').slideUp('slow');
                 $.ajax({
                     type: 'GET',
-                    url: 'inc/dml/monitorDML.php?action=getMonitorAPIKey&monitorID=' + $('#monitorAPIKeyMonitorID').val(),
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>" + $('#monitorAPIKeyMonitorID').val(),
                     success: function(theResponse) {
                         if (theResponse == 'false') {
                             $('#createMonitorAPIKeyWrapper').slideDown('slow');
@@ -1222,7 +1222,7 @@ $(document).ready(function() {
                 e.preventDefault();
                 $.ajax({
                     type: 'GET',
-                    url: 'inc/dml/monitorDML.php?action=generateMonitorAPIKey&monitorID=' + $('#monitorAPIKeyMonitorID').val(),
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>" + $('#monitorAPIKeyMonitorID').val(),
                     success: function(theResponse) {
                         $('#deleteMonitorAPIKeyWrapper').slideDown('slow');
                         $('#createMonitorAPIKeyWrapper').slideUp('slow');
@@ -1235,7 +1235,7 @@ $(document).ready(function() {
                 e.preventDefault();
                 $.ajax({
                     type: 'GET',
-                    url: 'inc/dml/monitorDML.php?action=deleteMonitorAPIKey&monitorID=' + $('#monitorAPIKeyMonitorID').val(),
+                    url:"<?php echo base_url('addMonitorController/addMonitor')?>" + $('#monitorAPIKeyMonitorID').val(),
                     success: function(theResponse) {
                         $('#deleteMonitorAPIKeyWrapper').slideUp('slow');
                         $('#createMonitorAPIKeyWrapper').slideDown('slow');
@@ -1255,7 +1255,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     data: postData,
-                    url: "inc/dml/userDML.php?action=deleteReadOnlyAPIKey",
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         if (theResponse == "true") {
                             $("#deleteReadOnlyAPIKeyWrapper").slideUp("slow")
@@ -1274,7 +1274,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     data: postData,
-                    url: "inc/dml/userDML.php?action=generateReadOnlyAPIKey",
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                     success: function(theResponse) {
                         $("#deleteReadOnlyAPIKeyWrapper").slideDown("slow")
                         $("#createReadOnlyAPIKeyWrapper").slideUp("slow")
@@ -1333,8 +1333,8 @@ $(document).ready(function() {
                 var lastMonitorID = $('#mainSideMenu > li:last').attr('id').slice(8);
                 $.ajax({
                     type: "GET",
-                    url: 'inc/dml/monitorDML.php?action=getMonitors&monitorSearchKeyword=' + $("#searchMonitors").val() + '&monitorID=' + lastMonitorID + '&userSortMonitorsSettings=' + $('#mainSideMenuMonitorsSortType').val() + '&limitStart=' + $('#mainSideMenuMonitorsLimit').val() + '&limitEnd=' + mainSideMenuNewMonitorsPack,
-                    success: function(theResponse) {
+                    url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                      success: function(theResponse) {
                         $('#mainSideMenuMonitorsLimit').remove();
                         $('#mainSideMenu > li:last').before(theResponse);
                         $('#main-sidebar').getNiceScroll().resize();
@@ -1365,7 +1365,7 @@ $(document).ready(function() {
         var monitorID = $(this).closest('li').parent().closest('li').attr('id').slice(8);
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=startStopMonitor&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 var theResponse = eval(theResponse);
                 if (theResponse == 1) {
@@ -1515,7 +1515,7 @@ $(document).ready(function() {
     }
     $.ajax({
         type: "GET",
-        url: "inc/dml/userDML.php?action=getUserMonitorInterval",
+        url: "<?php echo base_url('addMonitorController/addMonitor')?>",
         success: function(theResponse) {
             var sliders = document.getElementsByClassName('newEditMonitorSlider');
             [].slice.call(sliders).forEach(function(slider, index) {
@@ -1575,7 +1575,7 @@ $(document).ready(function() {
         delay(function() {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/monitorDML.php?action=getMonitors&monitorSearchKeyword=" + $("#searchMonitors").val() + '&limitStart=0&limitEnd=20',
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#mainSideMenu').html(theResponse);
                     checkTruncateMonitorNames();
@@ -1598,8 +1598,8 @@ $(document).ready(function() {
         clickedSortType = $(this).attr("data-sortmonitortype");
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=getMonitors&monitorSearchKeyword=" + $("#searchMonitors").val() + '&userSortMonitorsSettings=' + clickedSortType + '&limitStart=0&limitEnd=20',
-            success: function(theResponse) {
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                success: function(theResponse) {
                 $('#sortMonitors').find('a').removeClass('text-green');
                 $("#sortMonitors a[data-sortmonitortype='" + clickedSortType + "']").addClass('text-green');
                 $('#sortMonitorsReset').removeClass('text-green');
@@ -1710,7 +1710,7 @@ $(document).ready(function() {
             $('.alertContactsSettingsStatus').val(0);
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=updateShowAdvancedAlertContactOptions&userShowAdvancedAlertContactOptions=0",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {}
             });
         } else {
@@ -1719,7 +1719,7 @@ $(document).ready(function() {
             $('.alertContactsSettingsStatus').val(1);
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=updateShowAdvancedAlertContactOptions&userShowAdvancedAlertContactOptions=1",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {}
             });
         }
@@ -1766,7 +1766,7 @@ $(document).ready(function() {
         $('#newHBMonitorGracePeriodType').val("1").change();
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=New&getAlertContactsEditOrList=0&limitStart=0&limitEnd=4",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('#newMonitorAlertContacts').html(theResponse);
                 keepAlertContactValuesNew('');
@@ -1774,7 +1774,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getMWindows&newEditListMWindow=New&getMWindowsEditOrList=0&limitStart=0&limitEnd=4&onLoadOrUser=0",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('#newMonitorMWindows').html(theResponse);
                 keepMWindowValuesNew('');
@@ -1842,7 +1842,7 @@ $(document).ready(function() {
             }
             $.ajax({
                 type: "GET",
-                url: "inc/dml/monitorDML.php?action=getDefaultHttpStatuses",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newHTTPMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .downStatusesBlock, #newHTTPMonitorAuthSettings .statusCodesBlock .upStatusesBlock').html('');
                     $('#newKeywordMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .downStatusesBlock, #newKeywordMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .upStatusesBlock').html('');
@@ -2199,8 +2199,8 @@ $(document).ready(function() {
                         $("#noMonitorsYet").slideUp("slow");
                         if (newMonitorTypeForHB == 5) {
                             $.ajax({
-                                type: "GET",
-                                url: "inc/dml/monitorDML.php?action=getLatestHBMonitorURL",
+                                type: "POST",
+                                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                                 success: function(theResponse) {
                                     $('#newHBMonitorSuccessNotificationMonitorURL').val(theResponse);
                                     $("#newHBMonitorSuccessNotification").slideDown("slow");
@@ -2535,7 +2535,7 @@ $(document).ready(function() {
         var allStatusBlocks = $(this).parent().parent().find(".statusCodesBlock a");
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=getDefaultHttpStatuses",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 upStatusBlocks.html("");
                 downStatusBlocks.html("");
@@ -2627,12 +2627,12 @@ $(document).ready(function() {
         $("#editKeywordMonitor .method-type-btn-group button.btn").removeClass("btn-green active");
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Edit&getAlertContactsEditOrList=0&limitStart=0&limitEnd=4",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('#editMonitorAlertContacts').html(theResponse).promise().done(function() {
                     $.ajax({
                         type: "GET",
-                        url: "inc/dml/monitorDML.php?action=getMonitorDetailsArray&monitorID=" + monitorID,
+                        url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
                         success: function(theResponse) {
                             var json = eval(theResponse);
                             var monitorType = json[0]['monitorType'];
@@ -2703,7 +2703,7 @@ $(document).ready(function() {
                             }
                             $.ajax({
                                 type: "GET",
-                                url: "inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Edit&getMWindowsEditOrList=0&limitStart=0&limitEnd=4&onLoadOrUser=0",
+                                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                                 success: function(theResponse) {
                                     $('#editMonitorMWindows').html(theResponse).promise().done(function() {
                                         keepMWindowValuesEdit(monitorMWindows);
@@ -3299,7 +3299,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "inc/dml/monitorDML.php?action=getMonitorWidget&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 if (theResponse.status == 1) {
                     $('.enableWidgetWrapper').addClass('hide');
@@ -3342,7 +3342,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "inc/dml/monitorDML.php?action=enableMonitorWidget&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 if (theResponse.status == 1) {
                     $('.enableWidgetWrapper').addClass('hide');
@@ -3384,7 +3384,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "inc/dml/monitorDML.php?action=disableMonitorWidget&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 $('.disableWidgetWrapper,.widgetResultWrapper').addClass('hide');
                 $('.enableWidgetWrapper').removeClass('hide');
@@ -3852,7 +3852,7 @@ $(document).ready(function() {
         $.ajax({
             type: "GET",
             dataType: 'json',
-            url: "inc/dml/monitorDML.php?action=getMonitorDebugSettings&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 if (theResponse.status) {
                     $('.debugCurrentSubmit').attr('data-monitorID', monitorID);
@@ -3983,7 +3983,8 @@ $(document).ready(function() {
             'isPing': isPing,
             'isHttp': isHttp
         };
-        debugUrl = "inc/dml/monitorDML.php?action=getMonitorDebugResults", $.ajax({
+        debugUrl ="",
+         $.ajax({
             type: "POST",
             dataType: "json",
             url: debugUrl,
@@ -4159,7 +4160,7 @@ $(document).ready(function() {
             'isPing': isPing,
             'isHttp': isHttp
         };
-        debugUrl = "inc/dml/monitorDML.php?action=getMonitorDebugResults", $.ajax({
+        debugUrl = "", $.ajax({
             type: "POST",
             dataType: "json",
             url: debugUrl,
@@ -4321,7 +4322,7 @@ $(document).ready(function() {
         $('#deleteMonitorFormCancelButton').html('Cancel');
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=getMonitorDetailsArray&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var monitorType = json[0]['monitorType'];
@@ -4365,7 +4366,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=deleteMonitor&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 if (theResponse == 'true') {
                     $('#mSidebar' + monitorID).slideUp('slow', function() {
@@ -4387,7 +4388,7 @@ $(document).ready(function() {
         $('#resetMonitorFormCancelButton').html('Cancel');
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=getMonitorDetailsArray&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var monitorType = json[0]['monitorType'];
@@ -4431,7 +4432,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "inc/dml/monitorDML.php?action=resetMonitor&monitorID=" + monitorID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
             success: function(theResponse) {
                 var theResponse = eval(theResponse);
                 if (theResponse == true) {
@@ -4452,7 +4453,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=startStopAlertContact&alertContactID=" + alertContactID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + alertContactID,
             success: function(theResponse) {
                 if (theResponse == 1) {
                     $('.startStopAlertContact[data-alertcontactid="' + alertContactID + '"]').html('<i class="fontello-icon-play-3" title="Enable Alert Contact">');
@@ -4524,7 +4525,7 @@ $(document).ready(function() {
         if ($("#newAlertContactType").val() == 1) {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getFreeMobileProviderOptions",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newMobileFreeProviderID').html(theResponse);
                 }
@@ -4533,7 +4534,7 @@ $(document).ready(function() {
         if ($("#newAlertContactType").val() == 8) {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getProSMSCountryOptions",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newProSMSAlertContactCountry').html(theResponse);
                 }
@@ -4542,7 +4543,7 @@ $(document).ready(function() {
         if ($("#newAlertContactType").val() == 14) {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getProSMSCountryOptions",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newProVoiceCallAlertContactCountry').html(theResponse);
                     $("#newProVoiceCallAlertContactCountry").val("0").change();
@@ -4576,7 +4577,7 @@ $(document).ready(function() {
         if (currentNewMobileFreeProviderID && currentNewMobileFreeProviderID != 0) {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getFreeMobileProviderDetailsArray&mobileProviderID=" + $(this).val(),
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>" + $(this).val(),
                 success: function(theResponse) {
                     var json = eval(theResponse);
                     var mobileProviderPrefix = json[0]['mobileProviderPrefix'];
@@ -5654,8 +5655,8 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerNew .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=New&getAlertContactsEditOrList=0' + '&limitStart=' + $('.alertContactsLimitNew').val() + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                    success: function(theResponse) {
                     $('#newMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputNew").val().split(",");
                     if (checkedAlertContacts[0].length != 0) {
@@ -5674,7 +5675,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerNew .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=New&getAlertContactsEditOrList=0' + '&limitStart=' + ($('.alertContactsLimitNew').val() - 8) + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputNew").val().split(",");
@@ -5694,8 +5695,8 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerEdit .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Edit&getAlertContactsEditOrList=0' + '&limitStart=' + $('.alertContactsLimitEdit').val() + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                     success: function(theResponse) {
                     $('#editMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputEdit").val().split(",");
                     if (checkedAlertContacts[0].length != 0) {
@@ -5714,7 +5715,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerEdit .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Edit&getAlertContactsEditOrList=0' + '&limitStart=' + ($('.alertContactsLimitEdit').val() - 8) + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#editMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputEdit").val().split(",");
@@ -5734,8 +5735,8 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerList .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=List&getAlertContactsEditOrList=1' + '&limitStart=' + $('.alertContactsLimitList').val() + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('.alertContactsContainerList').html(theResponse);
                 }
             });
@@ -5747,7 +5748,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerList .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=List&getAlertContactsEditOrList=1' + '&limitStart=' + ($('.alertContactsLimitList').val() - 8) + '&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('.alertContactsContainerList').html(theResponse);
                 }
@@ -5759,7 +5760,7 @@ $(document).ready(function() {
         var alertContactSearchKeyword = $('.alertContactsContainerList .alertContactSearchKeyword').val();
         $.ajax({
             type: 'GET',
-            url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=List&getAlertContactsEditOrList=1' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('.alertContactsContainerList').html(theResponse);
             }
@@ -5771,7 +5772,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerList .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=List&getAlertContactsEditOrList=1' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('.alertContactsContainerList').html(theResponse);
                 }
@@ -5783,7 +5784,7 @@ $(document).ready(function() {
         var alertContactSearchKeyword = $('.alertContactsContainerEdit .alertContactSearchKeyword').val();
         $.ajax({
             type: 'GET',
-            url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Edit&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('#editMonitorAlertContacts').html(theResponse);
                 checkedAlertContacts = $("input.alertContactsInputEdit").val().split(",");
@@ -5803,7 +5804,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerEdit .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Edit&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#editMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputEdit").val().split(",");
@@ -5823,7 +5824,7 @@ $(document).ready(function() {
         var alertContactSearchKeyword = $('.alertContactsContainerNew .alertContactSearchKeyword').val();
         $.ajax({
             type: 'GET',
-            url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=New&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(theResponse) {
                 $('#newMonitorAlertContacts').html(theResponse);
                 checkedAlertContacts = $("input.alertContactsInputNew").val().split(",");
@@ -5843,7 +5844,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerNew .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=New&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=4&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#newMonitorAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputNew").val().split(",");
@@ -5864,7 +5865,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerBulk .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Bulk&getAlertContactsEditOrList=0' + '&limitStart=' + $('.alertContactsLimitBulk').val() + '&limitEnd=9&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#bulkActionAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputBulk").val().split(",");
@@ -5884,7 +5885,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerBulk .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Bulk&getAlertContactsEditOrList=0' + '&limitStart=' + ($('.alertContactsLimitBulk').val() - 18) + '&limitEnd=9&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#bulkActionAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputBulk").val().split(",");
@@ -5903,8 +5904,8 @@ $(document).ready(function() {
         var alertContactSearchKeyword = $('.alertContactsContainerBulk .alertContactSearchKeyword').val();
         $.ajax({
             type: 'GET',
-            url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Bulk&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=9&alertContactSearchKeyword=' + alertContactSearchKeyword,
-            success: function(theResponse) {
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+             success: function(theResponse) {
                 $('#bulkActionAlertContacts').html(theResponse);
                 checkedAlertContacts = $("input.alertContactsInputBulk").val().split(",");
                 if (checkedAlertContacts[0].length != 0) {
@@ -5923,7 +5924,7 @@ $(document).ready(function() {
             var alertContactSearchKeyword = $('.alertContactsContainerBulk .alertContactSearchKeyword').val();
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Bulk&getAlertContactsEditOrList=0' + '&limitStart=0&limitEnd=9&alertContactSearchKeyword=' + alertContactSearchKeyword,
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#bulkActionAlertContacts').html(theResponse);
                     checkedAlertContacts = $("input.alertContactsInputBulk").val().split(",");
@@ -6090,7 +6091,7 @@ $(document).ready(function() {
         $('#editDiscordAlertContactExcludeNotifications').select2("val", "");
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getAlertContactDetailsArray&alertContactID=" + alertContactID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + alertContactID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var alertContactType = json[0]['alertContactType'];
@@ -7446,7 +7447,7 @@ $(document).ready(function() {
         $('#editFacebookAdsAlertContactCustomValue').trigger("change");
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getBaseUserDetails",
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             success: function(response) {
                 var userEmailSSLExpirationReminderStatus = response.user.userEmailSSLExpirationReminderStatus;
                 if (userEmailSSLExpirationReminderStatus == 1 || userEmailSSLExpirationReminderStatus == "1") {
@@ -7553,8 +7554,8 @@ $(document).ready(function() {
         if (!$('.nextAlertLogs').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/monitorDML.php?action=getLatestEventsAccount&limitStart=' + $('.latestEventsLimit').val() + '&limitEnd=10',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                  success: function(theResponse) {
                     $('.latestEventsWrapper').html(theResponse);
                 }
             });
@@ -7565,7 +7566,7 @@ $(document).ready(function() {
         if (!$('.prevAlertLogs').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/monitorDML.php?action=getLatestEventsAccount&limitStart=' + ($('.latestEventsLimit').val() - 20) + '&limitEnd=10',
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('.latestEventsWrapper').html(theResponse);
                 }
@@ -7577,8 +7578,8 @@ $(document).ready(function() {
         if (!$('.nextAlertLogs').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/monitorDML.php?action=getLatestEvents&monitorID=' + $('#dashboardMonitorID').val() + '&limitStart=' + $('.latestEventsLimit').val() + '&limitEnd=10',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('.latestEventsWrapper').html(theResponse);
                 }
             });
@@ -7589,8 +7590,8 @@ $(document).ready(function() {
         if (!$('.prevAlertLogs').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/monitorDML.php?action=getLatestEvents&monitorID=' + $('#dashboardMonitorID').val() + '&limitStart=' + ($('.latestEventsLimit').val() - 20) + '&limitEnd=10',
-                success: function(theResponse) {
+                url:"<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('.latestEventsWrapper').html(theResponse);
                 }
             });
@@ -7667,7 +7668,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: 'inc/dml/userDML.php?action=keepAlive',
+            url: "<?php base_url('inc/dml/userDML.php')?>" + "?action=keepAlive ",
             success: function(theResponse) {
                 if (theResponse.status == 1) {
                     if (theResponse.downMonitorCount > 0) {
@@ -7807,7 +7808,7 @@ $(document).ready(function() {
         var licencePurchaseID = $(this).data("plesklicenceid");
         $.ajax({
             type: 'POST',
-            url: 'inc/dml/userDML.php?action=removePleskLicenceFromTheAccount',
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
             data: {
                 plesklicenceid: licencePurchaseID
             },
@@ -8429,7 +8430,7 @@ $(document).ready(function() {
         }
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=switchMonitorNamesState&monitorNamesStateToSet=" + nextState,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + nextState,
             success: function(theResponse) {
                 if (theResponse) {
                     location.reload();
@@ -8547,7 +8548,7 @@ $(document).ready(function() {
             $(".alertContactsLimit").val(4);
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getAlertContacts&newEditListAlertContact=Bulk&getAlertContactsEditOrList=0&limitStart=0&limitEnd=9",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $('#bulkActionAlertContacts').html(theResponse);
                     keepAlertContactValuesBulk('');
@@ -8565,7 +8566,7 @@ $(document).ready(function() {
         if ($('#bulkActionType').val() == 8) {
             $.ajax({
                 type: "GET",
-                url: "inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Bulk&getMWindowsEditOrList=0&onLoadOrUser=1&limitStart=0&limitEnd=9",
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(response) {
                     $('#bulkAddMaintenanceWindowWrapper').html(response);
                 }
@@ -8723,7 +8724,7 @@ $(document).ready(function() {
                     $('#bulkImportErrorNotification').removeClass('hide');
                 }
             },
-            url: 'inc/dml/monitorDML.php?action=saveBulkImportUpload',
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
         });
     });
 
@@ -9521,7 +9522,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=startStopMWindow&mWindowID=" + mWindowID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + mWindowID,
             success: function(theResponse) {
                 if (theResponse == 0) {
                     $('.startStopMWindow[data-mwindowid="' + mWindowID + '"]').html('<i class="fontello-icon-play-3" title="Enable Maintenance Window">');
@@ -9549,7 +9550,7 @@ $(document).ready(function() {
         $('#deleteMWindowFormSubmitButton').attr('data-mwindowid', mWindowID);
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getMWindowDetailsArray&mWindowID=" + mWindowID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + mWindowID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var mWindowType = json[0]['mWindowType'];
@@ -9580,7 +9581,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=deleteMWindow&mWindowID=" + mWindowID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + mWindowID,
             success: function(theResponse) {
                 if (theResponse == 'true') {
                     $('#deleteMWindowInfoNotification').slideUp('slow');
@@ -9610,7 +9611,7 @@ $(document).ready(function() {
         $('#editMonthlyMWindow input:checkbox').prop('checked', false);
         $.ajax({
             type: "GET",
-            url: "inc/dml/userDML.php?action=getMWindowDetailsArray&mWindowID=" + mWindowID,
+            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + mWindowID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var mWindowType = json[0]['mWindowType'];
@@ -9687,8 +9688,8 @@ $(document).ready(function() {
         if (!$('.nextMWindows2').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=List&getMWindowsEditOrList=1' + '&limitStart=' + $('.mWindowsLimitList').val() + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('.mWindowsContainerList').html(theResponse);
                 }
             });
@@ -9699,8 +9700,8 @@ $(document).ready(function() {
         if (!$('.prevMWindows2').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=List&getMWindowsEditOrList=1' + '&limitStart=' + ($('.mWindowsLimitList').val() - 8) + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('.mWindowsContainerList').html(theResponse);
                 }
             });
@@ -9710,8 +9711,8 @@ $(document).ready(function() {
         if (!$('.nextMWindows0').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=New&getMWindowsEditOrList=0' + '&limitStart=' + $('.mWindowsLimitNew').val() + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                  success: function(theResponse) {
                     $('#newMonitorMWindows').html(theResponse);
                     keepMWindowValuesNew($('.mWindowsInputNew').val());
                 }
@@ -9723,8 +9724,8 @@ $(document).ready(function() {
         if (!$('.prevMWindows0').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=New&getMWindowsEditOrList=0' + '&limitStart=' + ($('.mWindowsLimitNew').val() - 8) + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                  success: function(theResponse) {
                     $('#newMonitorMWindows').html(theResponse);
                     keepMWindowValuesNew($('.mWindowsInputNew').val());
                 }
@@ -9736,8 +9737,8 @@ $(document).ready(function() {
         if (!$('.nextMWindows1').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Edit&getMWindowsEditOrList=0' + '&limitStart=' + $('.mWindowsLimitEdit').val() + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('#editMonitorMWindows').html(theResponse);
                     keepMWindowValuesEdit($('.mWindowsInputEdit').val());
                 }
@@ -9749,8 +9750,8 @@ $(document).ready(function() {
         if (!$('.prevMWindows1').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Edit&getMWindowsEditOrList=0' + '&limitStart=' + ($('.mWindowsLimitEdit').val() - 8) + '&limitEnd=4&onLoadOrUser=1',
-                success: function(theResponse) {
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                 success: function(theResponse) {
                     $('#editMonitorMWindows').html(theResponse);
                     keepMWindowValuesEdit($('.mWindowsInputEdit').val());
                 }
@@ -9762,7 +9763,7 @@ $(document).ready(function() {
         if (!$('.nextMWindowsBulk').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Bulk&getMWindowsEditOrList=0' + '&limitStart=' + $('.mWindowsLimitBulk').val() + '&limitEnd=9&onLoadOrUser=1',
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $("#bulkAddMaintenanceWindowWrapper").html(theResponse).promise().done(function() {
                         keepMWindowValuesBulk();
@@ -9776,7 +9777,7 @@ $(document).ready(function() {
         if (!$('.prevMWindowsBulk').parents('li').hasClass('disabled')) {
             $.ajax({
                 type: 'GET',
-                url: 'inc/dml/userDML.php?action=getMWindows&newEditListMWindow=Bulk&getMWindowsEditOrList=0' + '&limitStart=' + ($('.mWindowsLimitBulk').val() - 18) + '&limitEnd=9&onLoadOrUser=1',
+                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
                 success: function(theResponse) {
                     $("#bulkAddMaintenanceWindowWrapper").html(theResponse).promise().done(function() {
                         keepMWindowValuesBulk();
@@ -11882,7 +11883,7 @@ function submitPaypalCheckout(form) {
     var productId = ($('.selectedProductInfo').text().indexOf('SMS') !== -1) ? $('#proSMSCredits option:selected').val() : $('#proPlanMonitorLimit option:selected').val();
     $.ajax({
         type: 'GET',
-        dataType: 'json',
+        dataType: 'json',  
         data: {
             productId
         },

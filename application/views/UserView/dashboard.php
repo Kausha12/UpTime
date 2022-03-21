@@ -167,9 +167,9 @@
                         </div>
                     </li><input type="hidden" value="20" id="mainSideMenuMonitorsLimit">
                     <li class="accordion-group hide" id="loadingMoreMonitors" style="background: #373b3e;">
-                        <!-- <div class="accordion-heading">
+                        <div class="accordion-heading">
                             <a class="monitorTitle" href="#" style="color:#e6e8eb;">Loading more....</a>
-                        </div> -->
+                        </div>
                     </li>
                 </ul>
                 <input id="monitorsLastRowReached" type="hidden" value="0" />
@@ -296,7 +296,7 @@
                                                                             <div class="controls">
                                                                             <div class="noUiSlider span6 timeoutSlider"></div>
                                                                                 <span class="help-inline span5">in <span class="timeoutInText"><b>30</b> seconds</span>
-                                                                                <input type="text" name="newPortMonitorTimeout" value="30" class="hide monitorTimeout">
+                                                                                <input type="text" name="newHTTPMonitorInterval" value="30" class="hide monitorTimeout">
                                                                             </div>
                                                                         </li>
                                                                         <li class="control-group">
@@ -304,7 +304,7 @@
                                                                             <div class="controls">
                                                                                 <div class="noUiSlider span6 timeoutSlider"></div>
                                                                                 <span class="help-inline span5">in <span class="timeoutInText"><b>30</b> seconds</span>
-                                                                                <input type="text" name="newHTTPMonitorTimeout" value="30" class="hide monitorTimeout">
+                                                                                <input type="text" name="newHTTPMonitorTimeout" value="" class="hide monitorTimeout">
                                                                             </div>
                                                                         </li>
                                                                         <div id="newHTTPMonitorAdvancedSettingsIgnoreSSLErrors" style="margin-bottom: 15px;">
@@ -467,9 +467,9 @@ Add Custom Header</button>
                                                                         <li class="control-group">
                                                                             <label for="newKeywordMonitorInterval" class="control-label">Monitoring Interval</label>
                                                                             <div class="controls">
-                                                                                <<div class="noUiSlider span6 timeoutSlider"></div>
+                                                                                <<div class=" iSlider span6 timeoutSlider"></div>
                                                                                 <span class="help-inline span5">in <span class="timeoutInText"><b>30</b> seconds</span>
-                                                                                <input type="text" name="newPortMonitorTimeout" value="30" class="hide monitorTimeout">
+                                                                                <input type="text" name="newKeywordMonitorInterval" value="30" class="hide monitorTimeout">
                                                                             </div>
                                                                         </li>
                                                                         <li class="control-group">
@@ -583,7 +583,7 @@ Add Custom Header</button>
                                                                             <div class="controls">
                                                                             <div class="noUiSlider span6 timeoutSlider"></div>
                                                                                 <span class="help-inline span5">in <span class="timeoutInText"><b>30</b> seconds</span>
-                                                                                <input type="text" name="newPortMonitorTimeout" value="30" class="hide monitorTimeout">
+                                                                                <input type="text" name="newPingMonitorTimeout" value="30" class="hide monitorTimeout">
                                                                             </div>
                                                                         </li>
 
@@ -647,60 +647,7 @@ Add Custom Header</button>
                                                                             </div>
                                                                         </li>
                                                                     </div>
-                                                                    <div class="hide" id="newHBMonitor">
-                                                                        <li class="control-group">
-                                                                            <label for="newHBMonitorFriendlyName" class="control-label">Friendly Name</label>
-                                                                            <div class="controls">
-                                                                                <input id="newHBMonitorFriendlyName" class="span6" type="text" value="" name="newHBMonitorFriendlyName">
-                                                                            </div>
-                                                                        </li>
-
-                                                                        <li class="control-group">
-                                                                            <label for="newHBMonitorInterval" class="control-label">Monitoring Interval</label>
-                                                                            <div class="controls">
-
-                                                                                <input type="number" id="newHBMonitorIntervalInput" name="newHBMonitorIntervalInput" value="5" min="5" class="span3" style="float: left !important" max="44640">
-                                                                                <div class="span3">
-                                                                                    <select name="newHBMonitorIntervalType" id="newHBMonitorIntervalType" style="width: 100%;">
-<option value="1" selected="selected" data-text="minute">minute</option>
-<option value="60" data-text="hour">hours</option>
-<option value="1440" data-text="day">days</option>
-</select>
-                                                                                </div>
-                                                                                <input type="text" id="newHBMonitorInterval" name="newHBMonitorInterval" value="300" class="hide">
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="control-group">
-                                                                            <label for="newHBMonitorGracePeriodInput" class="control-label">Grace Period</label>
-                                                                            <div class="controls" style="position: relative;">
-
-                                                                                <input type="number" id="newHBMonitorGracePeriodInput" name="newHBMonitorGracePeriodInput" value="30" class="span3" style="float: left !important" min="0" max="86400">
-                                                                                <div class="span3">
-                                                                                    <select name="newHBMonitorGracePeriodType" id="newHBMonitorGracePeriodType" style="width: 100%;">
-<option value="1" selected="selected" data-text="second">seconds</option>
-<option value="60" data-text="minute">minutes</option>
-<option value="3600" data-text="hour">hours</option>
-</select>
-                                                                                </div>
-                                                                                <div class="clearfix span12">
-                                                                                    <input type="text" name="newHBMonitorGracePeriod" value="0" id="newHBMonitorGracePeriod" class="hide">
-                                                                                </div>
-                                                                                <p style="margin-top: 15px; clear: both;" class="help-block">
-                                                                                    <i class="fontello-icon-help-circled"></i> Useful for jobs with varying runtime to prevent false positives. If set to 1 hour, monitor will add a 1-hour buffer to the monitoring
-                                                                                    interval.
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="control-group">
-                                                                            <div class="alert alert-info no-margin">
-                                                                                <p class="">
-                                                                                    Heartbeat monitor generates a unique URL you send requests to. UptimeRobot then expects your request in a selected interval. Accepted methods are <strong>POST and GET</strong>.
-                                                                                    You can <a href="https://blog.uptimerobot.com/new-feature-heartbeat-monitoring/">read more about Heartbeat monitoring on our blog.</a>
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-
-                                                                    </div>
+                                                                    
                                                                 </ul>
                                                             </fieldset>
 
@@ -710,19 +657,7 @@ Add Custom Header</button>
                                             </div>
                                         </div>
 
-                                        <div id="newHBMonitorSuccessNotification" class="alert alert-info no-margin-right no-margin-left margin-top20 hide">
-                                            <h4 style="margin-bottom: 15px">Copy &amp; set up</h4>
-                                            <p>
-                                                The URL for the heartbeat monitor:
-                                            </p>
-                                            <div class="input-append" style="margin: 15px 0; width: 90%">
-                                                <input type="url" id="newHBMonitorSuccessNotificationMonitorURL" class="span12" />
-                                                <button type="button" class="btn btn-primary copy-input">Copy</button>
-                                            </div>
-                                            <p style="margin-top: 15px">
-                                                <i class="fontello-icon-help-circled"></i> <a href="https://uptimerobot.com/help/heartbeat-monitoring/" target="_blank">How to send requests to heartbeat monitor from Cron or Task scheduler</a>
-                                            </p>
-                                        </div>
+                                       
                                         <div id="newMonitorSuccessNotification" class="alert alert-success no-margin-right no-margin-left margin-top20 hide">
                                             <strong class="alert-success">Monitor created!</strong> You can keep creating new monitors.
                                         </div>
@@ -744,14 +679,258 @@ Go to monitor detail
                                     </div>
 
                                     <div class="span5 grider">
-                                        <input type="hidden" name="alertContactsInputNew" class="alertContactsInputNew" />
-                                        <input type="hidden" name="alertContactsSettingsStatus" class="alertContactsSettingsStatus" value="0" />
-                                        <div id="newMonitorAlertContacts" class="alertContactsContainerNew">
-                                        </div>
-                                        <input type="hidden" class="getAlertContactsEditOrListDetector" value="0" />
-                                        <input type="hidden" name="mWindowsInputNew" class="mWindowsInputNew" />
-                                        <input type="hidden" class="getMWindowsEditOrListDetector" value="0" />
-                                    </div>
+<input type="hidden" name="alertContactsInputNew" class="alertContactsInputNew" value="">
+ <input type="hidden" name="alertContactsSettingsStatus" class="alertContactsSettingsStatus" value="0">
+<div id="newMonitorAlertContacts" class="alertContactsContainerNew">
+    <div class="widget widget-simple widget-notes widgetToGetEmail" data-alertcontactaccountemail="trivedikausha@gmail.com">
+        <div class="widget-header">
+            <h4><i class="fontello-icon-users-1"></i> Select "Alert Contacts To Notify"</h4>
+        </div>
+        <div id="maxAlertContactError">
+
+        </div>
+        <div class="widget-body">
+            <h5>Selected: <span class="alertContactSelectedCount">0</span> of <span class="alertContactCount">1</span> 
+            <span class="showHideAlertContactsInSettingsWrap"> (<a href="#no" class="showHideAlertContactsInNewEdit">hide</a>)</span>.</h5>
+            <button class="searchAlertContactBtn" type="button"><i class="fontello-icon-search-5" style="margin-right:0;"></i></button>
+            <input type="text" value="" placeholder="Search" class="span3 alertContactSearchKeyword"> 
+            <div class="alertContactsTableShowHideNewEdit">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Type</th>
+                            <th>Alert Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" style="padding-top:0;padding-bottom:0;">
+                            <div class="monitorAlertAdvancedOptionsInfo alert alert-info hide no-margin">
+                                These are optional controls to define "when to get notified" and "if to get notified once or every x minutes".
+                                <p><b>Info:</b> When a monitor is down, UptimeRobot checks them each minute (no matter their interval) and, for that reason, the minute values mentioned are also equal to the tries/checks made.</p>
+                                <p>And, recurring notifications are auto-stopped once the downtime is over 1 day.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="monitorAlertContactsNew[]" value="01668626" class="monitorAlertContactsNew monitorAlertContactsNew01668626 monitorAlertContactVariableNew" data-alertcontactid="01668626"></td>
+                            <td><i class="fontello-icon-mail"></i></td>
+                            <td><span title="trivedikausha@gmail.com">trivedikausha@gmail.<span class="shortenLongAlertContacts"></span>..</span></td>
+                        </tr>
+                        <tr class="monitorAlertContactsAdvancedOptionsNew01668626 hide">
+                            <td colspan="3" style="border-top:0px;">if down for <select disabled="" class="monitorAlertThresholdNew monitorAlertThresholdNew01668626 monitorAlertContactVariableNew" name="monitorAlertThresholdNew[]" data-alertcontactid="01668626" style="font-size: 11px;height: 20px;width:80px; padding:1px;"><option value="0">
+0 mins
+</option>
+<option value="1">
+1 mins
+</option>
+<option value="2">
+2 mins
+</option>
+<option value="3">
+3 mins
+</option>
+<option value="4">
+4 mins
+</option>
+<option value="5">
+5 mins
+</option>
+<option value="6">
+6 mins
+</option>
+<option value="7">
+7 mins
+</option>
+<option value="8">
+8 mins
+</option>
+<option value="9">
+9 mins
+</option>
+<option value="10">
+10 mins
+</option>
+<option value="11">
+11 mins
+</option>
+<option value="12">
+12 mins
+</option>
+<option value="13">
+13 mins
+</option>
+<option value="14">
+14 mins
+</option>
+<option value="15">
+15 mins
+</option>
+<option value="20">
+20 mins
+</option>
+<option value="25">
+25 mins
+</option>
+<option value="30">
+30 mins
+</option>
+<option value="35">
+35 mins
+</option>
+<option value="40">
+40 mins
+</option>
+<option value="45">
+45 mins
+</option>
+<option value="50">
+50 mins
+</option>
+<option value="55">
+55 mins
+</option>
+<option value="60">
+60 mins
+</option>
+<option value="70">
+70 mins
+</option>
+<option value="80">
+80 mins
+</option>
+<option value="90">
+90 mins
+</option>
+<option value="100">
+100 mins
+</option>
+<option value="110">
+110 mins
+</option>
+<option value="120">
+2 hrs
+</option>
+<option value="150">
+2.5 hrs
+</option>
+<option value="180">
+3 hrs
+</option>
+<option value="210">
+3.5 hrs
+</option>
+<option value="240">
+4 hrs
+</option>
+<option value="270">
+4.5 hrs
+</option>
+<option value="300">
+5 hrs
+</option>
+<option value="360">
+6 hrs
+</option>
+<option value="420">
+7 hrs
+</option>
+<option value="480">
+8 hrs
+</option>
+ <option value="540">
+9 hrs
+</option>
+<option value="600">
+10 hrs
+</option>
+<option value="660">
+11 hrs
+</option>
+<option value="720">
+12 hrs
+</option></select>, notify <select disabled="" class="monitorAlertRecurrenceNew monitorAlertRecurrenceNew01668626 monitorAlertContactVariableNew" name="monitorAlertRecurrenceNew[]" data-alertcontactid="01668626" style="font-size: 11px;height: 20px;width:110px; padding:1px;"><option value="0">
+once
+</option>
+<option value="1">
+every 1 min
+</option>
+<option value="2">
+every 2 mins
+</option>
+<option value="3">
+every 3 mins
+</option>
+<option value="4">
+every 4 mins
+</option>
+<option value="5">
+every 5 mins
+</option>
+<option value="6">
+every 6 mins
+</option>
+<option value="7">
+every 7 mins
+</option>
+<option value="8">
+every 8 mins
+</option>
+<option value="9">
+every 9 mins
+</option>
+<option value="10">
+every 10 mins
+</option>
+<option value="11">
+every 11 mins
+</option>
+<option value="12">
+every 12 mins
+</option>
+<option value="13">
+every 13 mins
+</option>
+<option value="14">
+every 14 mins
+</option>
+<option value="15">
+every 15 mins
+</option>
+<option value="20">
+every 20 mins
+</option>
+<option value="25">
+every 25 mins
+</option>
+<option value="30">
+every 30 mins
+</option>
+<option value="35">
+every 35 mins
+</option>
+<option value="40">
+every 40 mins
+</option>
+<option value="45">
+every 45 mins
+</option>
+<option value="50">
+every 50 mins
+</option>
+<option value="55">
+every 55 mins
+</option>
+<option value="60">
+every 60 mins
+</option></select></td></tr><tr><td colspan="3">New alert contacts can be defined from the "<a href="#mySettings" class="mySettings text-color underline">My Settings</a>" page.</td></tr></tbody></table></div></div></div><input type="hidden" value="4" class="alertContactsLimitNew">
+</div>
+<input type="hidden" class="getAlertContactsEditOrListDetector" value="0">
+<input type="hidden" name="mWindowsInputNew" class="mWindowsInputNew" value="">
+<input type="hidden" class="getMWindowsEditOrListDetector" value="0">
+</div>
+
 
                                 </div>
 
@@ -769,6 +948,7 @@ Go to monitor detail
                         <div class="modal-body">
                             <div class="tab-pane active fade in">
                                 <div class="row-fluid">
+                                    ::before
                                     <div class="span7 grider">
                                         <div class="widget widget-simple">
                                             <div class="widget-header">
@@ -1243,13 +1423,219 @@ Go to monitor detail
                                     </div>
 
                                     <div class="span5 grider">
-                                        <input type="hidden" name="alertContactsInputEdit" class="alertContactsInputEdit" />
-                                        <div id="editMonitorAlertContacts" class="alertContactsContainerEdit">
-                                        </div>
-                                        <input type="hidden" class="getAlertContactsEditOrListDetector" value="0" />
-                                        <input type="hidden" name="mWindowsInputEdit" class="mWindowsInputEdit" />
-                                        <input type="hidden" class="getMWindowsEditOrListDetector" value="0" />
-                                    </div>
+<input type="hidden" name="alertContactsInputNew" class="alertContactsInputNew" value="">
+ <input type="hidden" name="alertContactsSettingsStatus" class="alertContactsSettingsStatus" value="0">
+<div id="newMonitorAlertContacts" class="alertContactsContainerNew"><div class="widget widget-simple widget-notes widgetToGetEmail" data-alertcontactaccountemail="trivedikausha@gmail.com"><div class="widget-header"><h4><i class="fontello-icon-users-1"></i> Select "Alert Contacts To Notify"</h4></div><div id="maxAlertContactError"></div><div class="widget-body"><h5>Selected: <span class="alertContactSelectedCount">0</span> of <span class="alertContactCount">1</span> <span class="showHideAlertContactsInSettingsWrap"> (<a href="#no" class="showHideAlertContactsInNewEdit">hide</a>)</span>.</h5><button class="searchAlertContactBtn" type="button"><i class="fontello-icon-search-5" style="margin-right:0;"></i></button><input type="text" value="" placeholder="Search" class="span3 alertContactSearchKeyword"> <div class="alertContactsTableShowHideNewEdit"><table class="table table-condensed"><thead><tr><th>&nbsp;</th><th>Type</th><th>Alert Contact</th></tr></thead><tbody><tr><td colspan="3" style="padding-top:0;padding-bottom:0;"><div class="monitorAlertAdvancedOptionsInfo alert alert-info hide no-margin">These are optional controls to define "when to get notified" and "if to get notified once or every x minutes".<p><b>Info:</b> When a monitor is down, UptimeRobot checks them each minute (no matter their interval) and, for that reason, the minute values mentioned are also equal to the tries/checks made.</p><p>And, recurring notifications are auto-stopped once the downtime is over 1 day.</p></div></td></tr><tr><td><input type="checkbox" name="monitorAlertContactsNew[]" value="01668626" class="monitorAlertContactsNew monitorAlertContactsNew01668626 monitorAlertContactVariableNew" data-alertcontactid="01668626"></td><td><i class="fontello-icon-mail"></i></td><td><span title="trivedikausha@gmail.com">trivedikausha@gmail.<span class="shortenLongAlertContacts"></span>..</span></td></tr><tr class="monitorAlertContactsAdvancedOptionsNew01668626 hide"><td colspan="3" style="border-top:0px;">if down for <select disabled="" class="monitorAlertThresholdNew monitorAlertThresholdNew01668626 monitorAlertContactVariableNew" name="monitorAlertThresholdNew[]" data-alertcontactid="01668626" style="font-size: 11px;height: 20px;width:80px; padding:1px;"><option value="0">
+0 mins
+</option>
+<option value="1">
+1 mins
+</option>
+<option value="2">
+2 mins
+</option>
+<option value="3">
+3 mins
+</option>
+<option value="4">
+4 mins
+</option>
+<option value="5">
+5 mins
+</option>
+<option value="6">
+6 mins
+</option>
+<option value="7">
+7 mins
+</option>
+<option value="8">
+8 mins
+</option>
+<option value="9">
+9 mins
+</option>
+<option value="10">
+10 mins
+</option>
+<option value="11">
+11 mins
+</option>
+<option value="12">
+12 mins
+</option>
+<option value="13">
+13 mins
+</option>
+<option value="14">
+14 mins
+</option>
+<option value="15">
+15 mins
+</option>
+<option value="20">
+20 mins
+</option>
+<option value="25">
+25 mins
+</option>
+<option value="30">
+30 mins
+</option>
+<option value="35">
+35 mins
+</option>
+<option value="40">
+40 mins
+</option>
+<option value="45">
+45 mins
+</option>
+<option value="50">
+50 mins
+</option>
+<option value="55">
+55 mins
+</option>
+<option value="60">
+60 mins
+</option>
+<option value="70">
+70 mins
+</option>
+<option value="80">
+80 mins
+</option>
+<option value="90">
+90 mins
+</option>
+<option value="100">
+100 mins
+</option>
+<option value="110">
+110 mins
+</option>
+<option value="120">
+2 hrs
+</option>
+<option value="150">
+2.5 hrs
+</option>
+<option value="180">
+3 hrs
+</option>
+<option value="210">
+3.5 hrs
+</option>
+<option value="240">
+4 hrs
+</option>
+<option value="270">
+4.5 hrs
+</option>
+<option value="300">
+5 hrs
+</option>
+<option value="360">
+6 hrs
+</option>
+<option value="420">
+7 hrs
+</option>
+<option value="480">
+8 hrs
+</option>
+ <option value="540">
+9 hrs
+</option>
+<option value="600">
+10 hrs
+</option>
+<option value="660">
+11 hrs
+</option>
+<option value="720">
+12 hrs
+</option></select>, notify <select disabled="" class="monitorAlertRecurrenceNew monitorAlertRecurrenceNew01668626 monitorAlertContactVariableNew" name="monitorAlertRecurrenceNew[]" data-alertcontactid="01668626" style="font-size: 11px;height: 20px;width:110px; padding:1px;"><option value="0">
+once
+</option>
+<option value="1">
+every 1 min
+</option>
+<option value="2">
+every 2 mins
+</option>
+<option value="3">
+every 3 mins
+</option>
+<option value="4">
+every 4 mins
+</option>
+<option value="5">
+every 5 mins
+</option>
+<option value="6">
+every 6 mins
+</option>
+<option value="7">
+every 7 mins
+</option>
+<option value="8">
+every 8 mins
+</option>
+<option value="9">
+every 9 mins
+</option>
+<option value="10">
+every 10 mins
+</option>
+<option value="11">
+every 11 mins
+</option>
+<option value="12">
+every 12 mins
+</option>
+<option value="13">
+every 13 mins
+</option>
+<option value="14">
+every 14 mins
+</option>
+<option value="15">
+every 15 mins
+</option>
+<option value="20">
+every 20 mins
+</option>
+<option value="25">
+every 25 mins
+</option>
+<option value="30">
+every 30 mins
+</option>
+<option value="35">
+every 35 mins
+</option>
+<option value="40">
+every 40 mins
+</option>
+<option value="45">
+every 45 mins
+</option>
+<option value="50">
+every 50 mins
+</option>
+<option value="55">
+every 55 mins
+</option>
+<option value="60">
+every 60 mins
+</option></select></td></tr><tr><td colspan="3">New alert contacts can be defined from the "<a href="#mySettings" class="mySettings text-color underline">My Settings</a>" page.</td></tr></tbody></table></div></div></div><input type="hidden" value="4" class="alertContactsLimitNew">
+</div>
+<input type="hidden" class="getAlertContactsEditOrListDetector" value="0">
+<input type="hidden" name="mWindowsInputNew" class="mWindowsInputNew" value="">
+<input type="hidden" class="getMWindowsEditOrListDetector" value="0">
+</div>
 
                                 </div>
 

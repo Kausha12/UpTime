@@ -150,10 +150,7 @@
 
                         <input type="submit" name="Register" value="Register" class="uk-button uk-button-primary uk-button-large uk-width-1-1"/>
                         <div class="uk-margin-small-top uk-flex uk-flex-between uk-text-muted uk-text-small">
-                            <label style="cursor: pointer;" class="uk-flex-inline uk-flex-middle">
-								<input class="uk-checkbox m-r-10" type="checkbox" id="userRememberMe" name="userRememberMe" style="margin-top: 0;">
-								Remember me
-							</label>
+                            
                         </div>
 					</div>
 				</div>
