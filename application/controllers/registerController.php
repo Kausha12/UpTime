@@ -105,38 +105,51 @@ class registerController extends CI_Controller
     public function userAuthentication()
     {
 
-        if ($this->input->post('Login')) {
+        if ($this->input->post('Login')) 
+        {
             $this->form_validation->set_rules('userEmail', 'e-mail', 'valid_email|required');
             $this->form_validation->set_rules('userPassword', 'Password', 'required');
             if ($this->form_validation->run() == FALSE) 
             {
                 $this->load->view('UserView/HomePageLogin');
             }
-            else {
+            else 
+            {
                 $data = array(
                     'email' => $this->input->post('userEmail'),
                     'password' => md5($this->input->post('userPassword'))
                 );
 
                 $result = $this->upTimeRobotModel->userValid($data);
-                if ($result) {
-                    $register_data = array(
-                        'user_id' => $result['id'],
-                        'email' => $result['email'],
-                        'password' => $result['password'],
-                        'status' => 'logged in'
-                    );
-
-
-                    $this->session->set_userdata($register_data);
-                    // echo "Welcome"; 
-                    $this->load->view('UserView/dashboard');
+                if ($result) 
+                {
+                    if($result['is_admin'] == 1)
+                    {
+                        $register_data = array(
+                            'user_id' => $result['id'],
+                            'email' => $result['email'],
+                            'password' => $result['password'],
+                            'status' => 'logged in'
+                        );
+                        $this->session->set_userdata($register_data);
+                        $this->theme->load_view('AdminView/mainPage');
+                    }
+                    else
+                    {
+                        $register_data = array(
+                            'user_id' => $result['id'],
+                            'email' => $result['email'],
+                            'password' => $result['password'],
+                            'status' => 'logged in'
+                        );
+                        $this->session->set_userdata($register_data);
+                        $this->load->view('UserView/dashboard');
+                    }
                 }
-
-                else {
+                else 
+                {
                     $this->session->set_flashdata('notfound', 'Invalid Login Credential');
                     $this->load->view('UserView/HomePageLogin', $this->data);
-
                 }
             }
         }

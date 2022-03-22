@@ -18,7 +18,7 @@ class upTimeRobotModel extends CI_Model
 
     public function userValid($user)
 	{
-		// echo "<pre>";print_r($user);exit;
+		
 		$this->db->select('*');
 		$condition=array('email'=>$user['email'],'password'=>$user['password']);
 		$this->db->where($condition);

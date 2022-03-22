@@ -70,9 +70,10 @@ class addMonitorController extends CI_Controller
         // print_r($data);
         // exit;
         $result=$this->upTimeRobotModel->insertMoniter($data);
+        
         if($result)
         {
-            echo "inserted";
+            
         }
         else{
             echo "error";
