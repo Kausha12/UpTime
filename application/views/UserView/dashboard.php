@@ -161,6 +161,11 @@
                     }
                 </style>
                 <ul id="mainSideMenu" class="nav nav-list nav-side">
+                <?php
+                if(empty($all_monitor))
+                {
+                ?>
+                
                     <li class="accordion-group" id="noMonitorsYet" style="background: #373b3e;">
                         <div class="accordion-heading">
                             <span style="color:#e6e8eb;">You have no monitors yet.</span>
@@ -171,9 +176,67 @@
                             <a class="monitorTitle" href="#" style="color:#e6e8eb;">Loading more....</a>
                         </div>
                     </li>
-                </ul>
+                
                 <input id="monitorsLastRowReached" type="hidden" value="0" />
-
+                <?php
+                }
+                else{
+                    $i=1;
+                    foreach($all_monitor as $monitor)
+                    {?>
+                        <li class="accordion-group" id="mSidebar<?php $monitor['id']?>" style="">
+                            <div class="accordion-heading">
+                            <span class="label newMonitorColor sidebarMonitorPercentage">0%</span>
+                            <span class="label"><?php echo $monitor['monitor_type_id']?></span>
+                            <a class="monitorTitle" href="#<?php $monitor['id']?>"><?php echo $monitor['friendlyname']?></a> <a href="<?php $monitor['url']?>" target="_blank">
+						       <i class="item-icon fontello-icon-link-1 sidebarMonitorLink"></i>
+						 </a>
+                         <div class="pull-right">
+						      <div class="uptimeSidebarWrapper pull-left">
+						        <ul class="uptimeChart">
+						          <li class="newMonitorUptimeLine" data-tooltip="No logs (info) exist.">
+									    <!-- <img alt="1px" src="assets/img/1px.gif"> -->
+								</li>
+						        </ul>
+						      </div>
+						      <div class="pull-right">
+						        <a class="accordion-toggle monitorAccordionBtn" data-parent="#mainSideMenu" data-toggle="collapse" href="#mMenuAccordion<?php $monitor['id']?>">
+						             <i class="chevron fontello-icon-cog-3"></i>
+						        </a>
+						      </div>
+						    </div>
+						  </div>
+                          <ul class="accordion-content nav nav-list collapse" id="mMenuAccordion<?php $monitor['id']?>">
+					    
+					    <li class="startStopMonitor">
+					      <a href="#"><i class="fontello-icon-right-dir"></i>
+					        <span class="monitorStartStopText<?php echo $monitor['id']?>">Pause</span></a>
+					    </li>
+					    <li>
+					      <a class="editMonitor" data-monitorid="<?php echo $monitor['id']?>" data-toggle="modal" href="#editMonitor">
+										<i class="fontello-icon-right-dir"></i>
+										 Edit
+								</a>
+					    </li>
+					    <li>
+					      <a class="deleteMonitor" data-monitorid="<?php echo $monitor['id']?>" data-toggle="modal" href="#deleteMonitor">
+										<i class="fontello-icon-right-dir"></i>
+										 Delete
+								</a>
+					    </li>
+					    <li>
+					      <a class="resetMonitor" data-monitorid="<?php echo $monitor['id']?>" data-toggle="modal" href="#resetMonitor">
+										<i class="fontello-icon-right-dir"></i>
+										 Reset Stats
+								</a>
+					    </li>
+					  </ul>
+					</li>
+                    <?php
+                    }
+                }
+                ?>
+                </ul>
                 <div class="sidebar-item"></div>
 
             </div>
@@ -240,6 +303,58 @@
                         <!-- <a href="api">API</a> -->
                     </div>
                 </div>
+            <div id="mySettings"class="modal hide fade" tabindex="-1" data-width="60%" >
+                <div class="span6 grider alertContactsContainerList">
+<div class="widget widget-simple widget-notes widgetToGetEmail" data-alertcontactaccountemail="trivedikausha@gmail.com">
+<div class="widget-header">
+<h4><i class="fontello-icon-users-1"></i> Alert Contacts</h4><div class="widget-tool">
+<a class="btn btn-green btn-small btn-glyph addAlertContact" data-toggle="modal" href="#newAlertContact">Add Alert Contact</a>
+</div>
+</div>
+<div class="widget-body">
+<div class="alert alert-success hide" id="startStopAlertContactSuccessNotification"></div><h5 class="span7 alertContactResultText">There are
+<span class="alertContactCount">3</span> alert contacts (
+<a class="showHideAlertContactsInSettings" href="#no">hide them</a>).
+</h5>
+<button class="searchAlertContactBtn" type="button">
+<i class="fontello-icon-search-5" style="margin-right:0;"></i>
+</button>
+<input class="span3 alertContactSearchKeyword" placeholder="Search" type="text" value="">
+<div class="alertContactsTableShowHideList">
+<table class="table table-condensed alertContactsTableList">
+<thead>
+<tr>
+<th width="40px">Type</th>
+<th>Alert Contact</th>
+<th width="60px">Action</th>
+</tr>
+</thead>
+<tbody><tr class="" data-alertcontactid="01668626">
+<td><i class="fontello-icon-mail" title="E-mail"></i></td>
+<td><span title="trivedikausha@gmail.com">trivedikausha@gmail.<span class="shortenLongAlertContacts"></span>..</span></td>
+<td>
+<a class="editBaseAccountEmailAlertContact" data-alertcontactid="1668626" data-toggle="modal" href="#editAlertContact">
+<i class="fontello-icon-pencil" title="Edit Alert Contact"></i>
+</a><a class="startStopAlertContact" data-alertcontactid="01668626" href="#" style="padding: 0px 0px 0px 3px;">
+<i class="fontello-icon-pause-1" title="Disable Alert Contact">
+</i>
+</a>
+</td>
+</tr><tr data-alertcontactid="3445692" class="alertContactDisabled"><td><i class="fontello-icon-mail" title="E-mail"></i></td><td><span title="kaushatrivedi.18.cs@iite.indusuni.ac.in">kausha trivedi</span></td><td><a class="editAlertContact" data-alertcontactid="3445692" data-toggle="modal" href="#editAlertContact">
+<i class="fontello-icon-pencil" title="Edit Alert Contact">
+</i>
+</a> <i class="fontello-icon-lock-1" title="Activation Required"></i> <a href="#deleteAlertContact" data-toggle="modal" data-alertcontactid="3445692" class="deleteAlertContact"><i class="fontello-icon-cancel-3" title="Delete Alert Contact"></i></a></td></tr><tr data-alertcontactid="3445694" class=""><td><i class="fontello-icon-mail" title="E-mail"></i></td><td><span title="kaushatrivedi.elsner@gmail.com">kausha</span></td><td><a class="editAlertContact" data-alertcontactid="3445694" data-toggle="modal" href="#editAlertContact">
+<i class="fontello-icon-pencil" title="Edit Alert Contact">
+</i>
+</a> <a class="startStopAlertContact" data-alertcontactid="3445694" href="#">
+<i class="fontello-icon-pause-1" title="Disable Alert Contact">
+</i>
+</a> <a href="#deleteAlertContact" data-toggle="modal" data-alertcontactid="3445694" class="deleteAlertContact"><i class="fontello-icon-cancel-3" title="Delete Alert Contact"></i></a></td></tr></tbody>
+</table>
+</div>
+</div></div><input type="hidden" value="4" class="alertContactsLimitList">
+</div>
+</div>
                 <div id="newMonitor" class="modal hide fade" tabindex="-1" data-width="60%">
                     <div class="modal-header"> </div>
                     <form id="newMonitorForm" class="form-horizontal" method="POST" action="<?php echo base_url('addMonitorController/addMonitor')?>" autocomplete="off">
@@ -681,8 +796,8 @@ Go to monitor detail
                                     <div class="span5 grider">
 <input type="hidden" name="alertContactsInputNew" class="alertContactsInputNew" value="">
  <input type="hidden" name="alertContactsSettingsStatus" class="alertContactsSettingsStatus" value="0">
-<div id="newMonitorAlertContacts" class="alertContactsContainerNew">
-    <div class="widget widget-simple widget-notes widgetToGetEmail" data-alertcontactaccountemail="trivedikausha@gmail.com">
+    <div id="newMonitorAlertContacts" class="alertContactsContainerNew">
+        <div class="widget widget-simple widget-notes widgetToGetEmail" data-alertcontactaccountemail="trivedikausha@gmail.com">
         <div class="widget-header">
             <h4><i class="fontello-icon-users-1"></i> Select "Alert Contacts To Notify"</h4>
         </div>
@@ -948,7 +1063,7 @@ every 60 mins
                         <div class="modal-body">
                             <div class="tab-pane active fade in">
                                 <div class="row-fluid">
-                                    ::before
+                                    
                                     <div class="span7 grider">
                                         <div class="widget widget-simple">
                                             <div class="widget-header">
@@ -1243,9 +1358,9 @@ every 60 mins
                                                                                 </li>
                                                                                 <div class="collapse" id="editKeywordMonitorAdvancedSettingsCustomHeaders">
                                                                                     <div class="span12" style="position:absolute;top: 50%;left: 35%;">
-                                                                                        <span class="proFeatureDisabledText">
+                                                                                        <!-- <span class="proFeatureDisabledText">
 <span class="label label-warning">PRO</span> Available only in the PRO plan. <a href="#upgradeAccount" class="upgradeProAccount" data-dismiss="modal" data-toggle="modal">Upgrade</a>
-                                                                                        </span>
+                                                                                        </span> -->
                                                                                     </div>
                                                                                     <div class="opaci15 blur">
                                                                                         <li class="control-group">
@@ -1794,7 +1909,7 @@ every 60 mins
                 </div>
                 <div id="newAlertContact" class="modal hide fade" tabindex="-1" data-width="40%">
                     <div class="modal-header"> </div>
-                    <form id="newAlertContactForm" class="form-horizontal" method="POST" action="#">
+                    <form id="newAlertContactForm" class="form-horizontal" method="POST" action="">
                         <div class="modal-body">
                             <div class="tab-pane active fade in">
                                 <div class="row-fluid">
@@ -1820,12 +1935,12 @@ every 60 mins
 <option selected="selected" value="0">Please Select</option>
 <optgroup label="Standard Methods">
 <option value="2">E-mail</option>
-<option value="8">Pro SMS</option>
+<!-- <option value="8">Pro SMS</option>
 <option value="14">Voice Call</option>
-<option value="5">Webhook</option>
-<option value="1">Email-to-SMS</option>
+<option value="5">Webhook</option>-->
+<!-- <option value="1">Email-to-SMS</option>  -->
 </optgroup>
-<optgroup label="3rd Party Apps/Services">
+<!-- <optgroup label="3rd Party Apps/Services">
 <option value="3">Twitter</option>
 <option value="18">Telegram</option>
 <option value="11">Slack</option>
@@ -1838,7 +1953,7 @@ every 60 mins
 <option value="9">Pushover (Push for Android, iOS, Browsers & Desktop)</option>
 <option value="15">Splunk</option>
 <option value="7">Zapier</option>
-</optgroup>
+</optgroup> -->
 </select>
                                                                         </div>
                                                                     </li>
@@ -1928,7 +2043,7 @@ every 60 mins
                                                                             </li>
 
                                                                             </div>
-                                                                            <div class="hide" id="newTwitterAlertContact">
+                                                                            <!-- <div class="hide" id="newTwitterAlertContact">
                                                                                 <li class="control-group">
                                                                                     <label for="newTwitterAlertContactFriendlyName" class="control-label">Friendly Name <span class="required">*</span></label>
                                                                                     <div class="controls">
@@ -2169,7 +2284,7 @@ every 60 mins
 <option value="1">High Priority</option>
 <option value="2">Emergency Priority</option>
 </select>
-                                                                                                        <!-- <span class="help-block">Info about this setting can be found <a href="https://pushover.net/api#priority">here</a>.</span> -->
+                                                                                                         <span class="help-block">Info about this setting can be found <a href="https://pushover.net/api#priority">here</a>.</span> 
                                                                                                     </div>
                                                                                                 </li>
                                                                                                 <li class="control-group">
@@ -2584,8 +2699,8 @@ every 60 mins
                                                                                                                                 </div>
                                                                                                                             </li>
 
-                                                                                                                            </div>
-                                                                </ul>
+                                                                                                                            </div>-->
+                                                                </ul> 
                                                             </fieldset>
 
                                                             </div>
@@ -2613,7 +2728,7 @@ every 60 mins
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" data-dismiss="modal" class="btn">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Create Alert Contact</button>
+                                                               <a href="<?php echo base_url('addMonitorController/insertAContact')?>"> <button type="submit" class="btn btn-primary">Create Alert Contact</button></a>
                                                             </div>
                     </form>
                     </div>

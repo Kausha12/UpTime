@@ -82,5 +82,17 @@ class upTimeRobotModel extends CI_Model
 		
 		return true;
 	}
+	public function insertAContact($data)
+	{
+		$this->db->insert('contact', $data);
+		return true;
+	}
+
+	public function getAllMonitors($user_id)
+	{
+		
+		$result = $this->db->get_where('monitors', ['user_id' => $user_id]);
+		return $result->result_array();
+	}
 
 }

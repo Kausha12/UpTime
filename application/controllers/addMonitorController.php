@@ -11,7 +11,7 @@ class addMonitorController extends CI_Controller
 
     public function addMonitor()
     {
-        $type=$this->input->post('newMonitorType');
+        $type = $this->input->post('newMonitorType');
         $user = $this->session->userdata('user_id');
         if($type == 1)
         {
@@ -62,13 +62,14 @@ class addMonitorController extends CI_Controller
 
             );  
         }
-        else{
-            echo "error";
+        else
+        {
+            echo "error1";
         }
         
       
-        // print_r($data);
-        // exit;
+        print_r($data);
+        exit;
         $result=$this->upTimeRobotModel->insertMoniter($data);
         
         if($result)
@@ -76,10 +77,25 @@ class addMonitorController extends CI_Controller
             
         }
         else{
-            echo "error";
+            echo "error2";
         }
         
 
+    }
+
+    public function addAlertContact()
+    {
+        $data = array (
+            'friendly_name' => $this->input->post('newEmailAlertContactFriendlyName'),
+            'user_id' => $this->session->userdata('user_id'),
+            'contact_type_id' => $this->input->post('newAlertContactType'),
+            'emailaddress' => $this->input->post('newEmailAlertContactValue'),
+            // 'phonenumber' => $this->input->post('newAlertContactType'),
+            'notification' => $this->input->post('newEmailAlertContactExcludeNotifications')
+
+        );
+
+        $query = $this->upTimeRobotModel->insertAContact($data);
     }
 
     // public function saveMonitorType()

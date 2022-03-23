@@ -323,6 +323,7 @@ $(document).ready(function() {
         $('#main-content').css({
             opacity: 0.5
         });
+
         $("body").removeClass("loadMySettings").addClass("loadMainDashboard");
         var nMainDashboard = notyfy({
             text: '<h4>Loading....</h4>',
@@ -343,7 +344,7 @@ $(document).ready(function() {
         $('.dashBigTitle').html('Account Dashboard');
         $('.dashBigTitle').attr("data-monitorid", "");
         $('.dashSmallTitle').html('details about the account');
-        $('#page-content').load('/inc/pages/mainDashboard.php', function() {
+        $('#page-content').load("inc/pages/mainDashboard.php", function() {
             nMainDashboard.close();
             jQuery.getFeed({
                 url: 'https://blog.uptimerobot.com/feed/',
@@ -426,7 +427,7 @@ $(document).ready(function() {
                     $('.dashBigTitle').html('Account Dashboard');
                     $('.dashBigTitle').attr("data-monitorid", "");
                     $('.dashSmallTitle').html('details about the account');
-                    $('#page-content').load('inc/pages/mainDashboard.php', function() {
+                    $('#page-content').load("inc/pages/mainDashboard.php", function() {
                         nMainDashboard.close();
                         $('#main-content').css({
                             opacity: 1
@@ -710,7 +711,7 @@ $(document).ready(function() {
                 }
             });
         }
-        $('#page-content').load('inc/pages/monitorDashboard.php?monitorID=' + monitorID, function() {
+        $('#page-content').load("<?php base_url('inc/pages/monitorDashboard.php?monitorID=');?>" + monitorID, function() {
             if ($('#page-content').html() == '.') {
                 loadMainDashboard();
             }
@@ -881,7 +882,7 @@ $(document).ready(function() {
                 }, 0, 'swing');
             }
         });
-        $('#page-content').load('inc/pages/settingsDashboard.php', function() {
+        $('#page-content').load("inc/pages/settingsDashboard.php", function() {
             nMySettings.close();
             $('#main-content').css({
                 opacity: 1
@@ -1365,7 +1366,7 @@ $(document).ready(function() {
         var monitorID = $(this).closest('li').parent().closest('li').attr('id').slice(8);
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
+            url: "inc/dml/monitorDML.php?action=startStopMonitor&monitorID=" + monitorID,
             success: function(theResponse) {
                 var theResponse = eval(theResponse);
                 if (theResponse == 1) {
@@ -1515,7 +1516,7 @@ $(document).ready(function() {
     }
     $.ajax({
         type: "GET",
-        url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+        url: "addMonitorController/addMonitor",
         success: function(theResponse) {
             var sliders = document.getElementsByClassName('newEditMonitorSlider');
             [].slice.call(sliders).forEach(function(slider, index) {
@@ -1766,7 +1767,7 @@ $(document).ready(function() {
         $('#newHBMonitorGracePeriodType').val("1").change();
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+            url: "addMonitorController/addMonitor",
             success: function(theResponse) {
                 $('#newMonitorAlertContacts').html(theResponse);
                 keepAlertContactValuesNew('');
@@ -1774,7 +1775,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+            url: "addMonitorController/addMonitor",
             success: function(theResponse) {
                 $('#newMonitorMWindows').html(theResponse);
                 keepMWindowValuesNew('');
@@ -1842,7 +1843,7 @@ $(document).ready(function() {
             }
             $.ajax({
                 type: "GET",
-                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+                url: "addMonitorController/addMonitor",
                 success: function(theResponse) {
                     $('#newHTTPMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .downStatusesBlock, #newHTTPMonitorAuthSettings .statusCodesBlock .upStatusesBlock').html('');
                     $('#newKeywordMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .downStatusesBlock, #newKeywordMonitorAdvancedSettingsCustomHttpStatuses .statusCodesBlock .upStatusesBlock').html('');
@@ -2627,12 +2628,12 @@ $(document).ready(function() {
         $("#editKeywordMonitor .method-type-btn-group button.btn").removeClass("btn-green active");
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+            url: "addMonitorController/editMonitor>",
             success: function(theResponse) {
                 $('#editMonitorAlertContacts').html(theResponse).promise().done(function() {
                     $.ajax({
                         type: "GET",
-                        url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
+                        url: "addMonitorController/addMonitor" + monitorID,
                         success: function(theResponse) {
                             var json = eval(theResponse);
                             var monitorType = json[0]['monitorType'];
@@ -4322,7 +4323,7 @@ $(document).ready(function() {
         $('#deleteMonitorFormCancelButton').html('Cancel');
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
+            url: "addMonitorController/addMonitor" + monitorID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var monitorType = json[0]['monitorType'];
@@ -4388,7 +4389,7 @@ $(document).ready(function() {
         $('#resetMonitorFormCancelButton').html('Cancel');
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
+            url: "addMonitorController/resetMonitor" + monitorID,
             success: function(theResponse) {
                 var json = eval(theResponse);
                 var monitorType = json[0]['monitorType'];
@@ -4432,7 +4433,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + monitorID,
+            url: "<?php echo base_url('addMonitorController/resetMonitor')?>" + monitorID,
             success: function(theResponse) {
                 var theResponse = eval(theResponse);
                 if (theResponse == true) {
@@ -4453,7 +4454,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + alertContactID,
+            url: "<?php echo base_url('addMonitorController/startStopAlertContact')?>" + alertContactID,
             success: function(theResponse) {
                 if (theResponse == 1) {
                     $('.startStopAlertContact[data-alertcontactid="' + alertContactID + '"]').html('<i class="fontello-icon-play-3" title="Enable Alert Contact">');
@@ -4495,71 +4496,71 @@ $(document).ready(function() {
         $('#newAlertContactForm').find("input[type=text], textarea").val("");
         var formHolders = {
             0: "",
-            1: "newMobileFreeAlertContact",
+           // 1: "newMobileFreeAlertContact",
             2: "newEmailAlertContact",
-            3: "newTwitterAlertContact",
-            4: "newBoxcarAlertContact",
-            5: "newWebHookAlertContact",
-            6: "newPushbulletAlertContact",
-            7: "newZapierAlertContact",
-            8: "newProSMSAlertContact",
-            9: "newPushoverAlertContact",
-            10: "newHipchatAlertContact",
-            11: "newSlackAlertContact",
-            14: "newProVoiceCallAlertContact",
-            15: "newSplunkAlertContact",
-            16: "newPagerDutyAlertContact",
-            17: "newOpsGenieAlertContact",
-            18: "newTelegramAlertContact",
-            19: "newGoogleAdWordsAlertContact",
-            20: "newMSTeamsAlertContact",
-            21: "newHangoutsChatAlertContact",
-            22: "newFacebookAdsAlertContact",
-            23: 'newDiscordAlertContact'
+            // 3: "newTwitterAlertContact",
+            // 4: "newBoxcarAlertContact",
+            // 5: "newWebHookAlertContact",
+            // 6: "newPushbulletAlertContact",
+            // 7: "newZapierAlertContact",
+            // 8: "newProSMSAlertContact",
+            // 9: "newPushoverAlertContact",
+            // 10: "newHipchatAlertContact",
+            // 11: "newSlackAlertContact",
+            // 14: "newProVoiceCallAlertContact",
+            // 15: "newSplunkAlertContact",
+            // 16: "newPagerDutyAlertContact",
+            // 17: "newOpsGenieAlertContact",
+            // 18: "newTelegramAlertContact",
+            // 19: "newGoogleAdWordsAlertContact",
+            // 20: "newMSTeamsAlertContact",
+            // 21: "newHangoutsChatAlertContact",
+            // 22: "newFacebookAdsAlertContact",
+            // 23: 'newDiscordAlertContact'
         };
-        changeAlertContactForm(formHolders[$("#newAlertContactType").val()]);
-        $("#newAlertContactAttachNotification").slideUp("slow");
-        $("#newAlertContactSuccessNotification").slideUp("slow");
-        $("#newAlertContactErrorNotification").slideUp("slow");
-        $("#newAlertContactExistsErrorNotification").slideUp("slow");
-        if ($("#newAlertContactType").val() == 1) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
-                success: function(theResponse) {
-                    $('#newMobileFreeProviderID').html(theResponse);
-                }
-            });
-        }
-        if ($("#newAlertContactType").val() == 8) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
-                success: function(theResponse) {
-                    $('#newProSMSAlertContactCountry').html(theResponse);
-                }
-            });
-        }
-        if ($("#newAlertContactType").val() == 14) {
-            $.ajax({
-                type: "GET",
-                url: "<?php echo base_url('addMonitorController/addMonitor')?>",
-                success: function(theResponse) {
-                    $('#newProVoiceCallAlertContactCountry').html(theResponse);
-                    $("#newProVoiceCallAlertContactCountry").val("0").change();
-                }
-            });
-        }
-        if ($("#newAlertContactType").val() == 15) {
-            $("#newSplunkAlertContactValue").val("https://");
-        }
-        if ($("#newAlertContactType").val() == 16) {
-            $("#newPagerDutyAlertContactAutoResolve").select2("val", "1");
-        }
-        if ($("#newAlertContactType").val() == 17) {
-            $("#newOpsGenieAlertContactValue").val("https://");
-            $("#newOpsGenieAlertContactTeamsToNotify").val("");
-        }
+        // changeAlertContactForm(formHolders[$("#newAlertContactType").val()]);
+        // $("#newAlertContactAttachNotification").slideUp("slow");
+        // $("#newAlertContactSuccessNotification").slideUp("slow");
+        // $("#newAlertContactErrorNotification").slideUp("slow");
+        // $("#newAlertContactExistsErrorNotification").slideUp("slow");
+        // if ($("#newAlertContactType").val() == 2) {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "addMonitorController/addAlertContact",
+        //         success: function(theResponse) {
+        //             $('#newEmailAlertContact').html(theResponse);
+        //         }
+        //     });
+        // }
+        // if ($("#newAlertContactType").val() == 8) {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "addMonitorController/addAlertContact",
+        //         success: function(theResponse) {
+        //             $('#newProSMSAlertContactCountry').html(theResponse);
+        //         }
+        //     });
+        // }
+        // if ($("#newAlertContactType").val() == 14) {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "<?php echo base_url('addMonitorController/addMonitor')?>",
+        //         success: function(theResponse) {
+        //             $('#newProVoiceCallAlertContactCountry').html(theResponse);
+        //             $("#newProVoiceCallAlertContactCountry").val("0").change();
+        //         }
+        //     });
+        // }
+        // if ($("#newAlertContactType").val() == 15) {
+        //     $("#newSplunkAlertContactValue").val("https://");
+        // }
+        // if ($("#newAlertContactType").val() == 16) {
+        //     $("#newPagerDutyAlertContactAutoResolve").select2("val", "1");
+        // }
+        // if ($("#newAlertContactType").val() == 17) {
+        //     $("#newOpsGenieAlertContactValue").val("https://");
+        //     $("#newOpsGenieAlertContactTeamsToNotify").val("");
+        // }
     });
 
     function changeAlertContactForm(selectedForm) {
@@ -9522,7 +9523,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('addMonitorController/addMonitor')?>" + mWindowID,
+            url: "inc/dml/userDML.php?action=startStopMWindow&mWindowID=" + mWindowID,
             success: function(theResponse) {
                 if (theResponse == 0) {
                     $('.startStopMWindow[data-mwindowid="' + mWindowID + '"]').html('<i class="fontello-icon-play-3" title="Enable Maintenance Window">');

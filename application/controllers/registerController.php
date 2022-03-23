@@ -143,7 +143,9 @@ class registerController extends CI_Controller
                             'status' => 'logged in'
                         );
                         $this->session->set_userdata($register_data);
-                        $this->load->view('UserView/dashboard');
+                        
+                        $data['all_monitor']=$this->upTimeRobotModel->getAllMonitors($register_data['user_id']);
+                        $this->load->view('UserView/dashboard', $data);
                     }
                 }
                 else 
